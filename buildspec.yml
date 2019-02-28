@@ -7,4 +7,4 @@ artifacts:
   type: zip
   files:
     - template.yaml
-    - pacaged.yaml
+    - packaged.yaml
