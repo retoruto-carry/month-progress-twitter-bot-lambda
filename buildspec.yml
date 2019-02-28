@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - aws cloudformation package --template-file template.yaml --s3-bucket lambda-test-retoruto-carry --output-template-file packaged.yaml
+artifacts:
+  type: zip
+  files:
+    - template.yaml
+    - pacaged.yaml
