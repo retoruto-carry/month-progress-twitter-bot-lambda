@@ -15,6 +15,7 @@ let response;
  * 
  */
 exports.lambdaHandler = async (event, context) => {
+    console.log(process.env.SAMPLE_KEY)
     try {
         // const ret = await axios(url);
         response = {

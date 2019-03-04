@@ -29,6 +29,9 @@ Resources:
                     Type: Schedule
                     Properties:
                         Schedule: rate(1 minute)
+            Environment:
+                Variables:
+                    SAMPLE_KEY: sampleValue
 
 Outputs:
 
