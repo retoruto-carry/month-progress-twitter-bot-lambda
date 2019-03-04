@@ -16,19 +16,30 @@ let response;
  */
 exports.lambdaHandler = async (event, context) => {
     console.log(process.env.SAMPLE_KEY)
-    try {
-        // const ret = await axios(url);
-        response = {
-            'statusCode': 200,
-            'body': JSON.stringify({
-                message: 'changed hello world',
-                // location: ret.data.trim()
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        return err;
+    console.log(genarateTweetText(90))
+
+    return 0
+};
+
+// ツイートテキスト生成
+// 例　▓▓░░░░░░░░░░░░░ 13% 
+// 15個のブロック ブロック数は四捨五入
+function genarateTweetText(passedTimeRatio) {
+
+    passedTimeRatioBlockAmount = Math.round(passedTimeRatio / (100/15))
+    console.log("passedTimeRatioBlockAmount: " + passedTimeRatioBlockAmount)
+
+    text = ''
+
+    for (i = 0; i < passedTimeRatioBlockAmount; i++) {
+        text += '▓'
     }
 
-    return response
-};
+    for (i = 0; i < 15 - passedTimeRatioBlockAmount; i++) {
+        text += '░'
+    }
+
+    text += ` ${passedTimeRatio}%`
+
+    return text
+}
