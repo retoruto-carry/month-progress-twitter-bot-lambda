@@ -16,7 +16,9 @@ let response;
  */
 exports.lambdaHandler = (event, context) => {
 
-    // tweet(
+    console.log(generateProgressBar(19))
+
+    // doTweet(
     //     generateTweetText(
     //         calcPassedTimeRatio()
     //     )
@@ -29,6 +31,16 @@ exports.lambdaHandler = (event, context) => {
  * @return float - 経過した割合(0~100%)
  */
 // function calcPassedTimeRatio() {
+
+//     // 時刻取得
+//     currentTime = new Date.now.
+//     startMonthTime = 当月の1日0時
+//     endMonthTime = 月末の末日24時（もしくは翌月の1日0時）
+//     passedTime = currentTime - startMonthTime;
+//     monthTime = endMonthTime - startMonthTime;
+
+//     // 経過割合取得
+//     passedTimeRatio = passedTime / monthTime;
 
 //     return passedTimeRatio;
 // }
@@ -43,9 +55,8 @@ exports.lambdaHandler = (event, context) => {
  */
 function generateTweetText(passedTimeRatio) {
 
-    tweetText = `${generateProgressBar(passedTimeRatio)} ${passedTimeRatio}%`;
+    return `${generateProgressBar(passedTimeRatio)} ${passedTimeRatio}%`;
 
-    return tweetText;
 }
 
 /**
@@ -60,29 +71,17 @@ function generateProgressBar(passedTimeRatio) {
 
     const blockWidth = 15;
 
-    filledBlockWidth = Math.round(passedTimeRatio / (100　/　blockWith));
-    console.log("filledBlockWidth: " + filledBlockWidth);
+    filledBlockWidth = Math.round(passedTimeRatio / (100 / blockWidth));
 
-    progressBar = '';
+    return "▓".repeat(filledBlockWidth) + '░'.repeat(blockWidth - filledBlockWidth)
 
-    // プログレスバーのうち塗られている部分
-    for (i = 0; i < filledBlockWidth; i++) {
-        progressBar += '▓';
-    }
-
-    // プログレスバーのうち塗られていない部分
-    for (i = 0; i < blockWith - filledBlockWidth; i++) {
-        progressBar += '░';
-    }
-
-    return progressBar;
 }
 
 /**
  * 与えられた文字列をツイートする
  * @param String text - ツイートする文字列
  */
-function tweet(text) {
+function doTweet(text) {
     var Twitter = require('twitter');
  
     var client = new Twitter({
