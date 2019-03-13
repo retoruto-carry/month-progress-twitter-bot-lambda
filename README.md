@@ -174,7 +174,8 @@ All commands used throughout this document
 
 ```bash
 # Invoke function locally with event.json as an input
-sam local invoke HelloWorldFunction --event event.json
+# sam local invoke HelloWorldFunction --event event.json
+sam local invoke HelloWorldFunction --event event.json #環境変数を追加
 
 # Run API Gateway locally
 sam local start-api

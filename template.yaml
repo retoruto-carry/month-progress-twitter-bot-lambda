@@ -32,6 +32,10 @@ Resources:
             Environment:
                 Variables:
                     SAMPLE_KEY: sampleValue
+                    TWITTER_CONSUMER_KEY: twitterConsumerKey,
+                    TWITTER_CONSUMER_SECRET: twitterConsumerSecret,
+                    TWITTER_ACCESS_TOKEN_KEY: twitterAccessTokenKey,
+                    TWITTER_ACCESS_TOKEN_SECRET: twiiterAccessTokenSecret
 
 Outputs:
 

@@ -14,11 +14,35 @@ let response;
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
  * 
  */
-exports.lambdaHandler = async (event, context) => {
-    console.log(process.env.SAMPLE_KEY)
-    console.log(genarateTweetText(90))
+exports.lambdaHandler = (event, context) => {
 
-    return 0
+    var Twitter = require('twitter');
+ 
+    var client = new Twitter({
+        consumer_key: process.env.TWITTER_CONSUMER_KEY,
+        consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+        access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+        access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+    });
+
+    client.post('statuses/update', {status: 'this is a test'}, function(error, tweet, response) {
+
+        if (error) {
+            // console.log(error);
+            // throw error;
+            console.log(error)
+            // return context.fail("fail")
+        }
+
+        console.log(tweet);
+        console.log(response);
+
+        // context.succeed("success");
+    })
+
+    console.log(process.env.SAMPLE_KEY);
+    console.log(genarateTweetText(90));
+
 };
 
 // ツイートテキスト生成
