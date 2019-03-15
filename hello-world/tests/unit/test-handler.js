@@ -5,9 +5,14 @@ const chai = require('chai');
 var assert = chai.assert;
 var event, context;
 
-describe('Tests index', function () {
-    // not working 書き方が分からない
-    it('generateProgressBar_0%', async () => {
+describe('Function generateProgressBar', function () {
+    it('0%', async () => {
         assert.deepEqual(await app.generateProgressBar(0),'░░░░░░░░░░░░░░░');
+    });
+    it('50%', async () => {
+        assert.deepEqual(await app.generateProgressBar(0.5),'▓▓▓▓▓▓▓▓░░░░░░░');
+    });
+    it('100%', async () => {
+        assert.deepEqual(await app.generateProgressBar(1),'▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓');
     });
 });
