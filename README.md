@@ -28,7 +28,8 @@ This is a sample template for sam-app - Below is a brief explanation of what we 
 **Invoking function locally using a local sample payload**
 
 ```bash
-sam local invoke HelloWorldFunction --event event.json
+# sam local invoke HelloWorldFunction --event event.json
+sam local invoke HelloWorldFunction --event event.json  --env-vars env.json #環境変数を追加
 ```
  
 **Invoking function locally through local API Gateway**

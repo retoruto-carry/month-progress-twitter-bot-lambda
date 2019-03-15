@@ -16,9 +16,9 @@ let response;
  */
 exports.lambdaHandler = (event, context) => {
 
-    doTweet(
-        generateTweetText(
-            calcPassedTimeRatio()
+    this.doTweet(
+        this.generateTweetText(
+            this.calcPassedTimeRatio()
         )
     );
 
@@ -28,7 +28,7 @@ exports.lambdaHandler = (event, context) => {
  * 現在時刻、当月がどれだけの割合経過しているかを計算する
  * @return float - 経過した割合(0~100%)
  */
-function calcPassedTimeRatio() {
+exports.calcPassedTimeRatio = () => {
 
     // 時刻取得
     const today = new Date();
@@ -53,12 +53,12 @@ function calcPassedTimeRatio() {
  * -------------------------
  * @param float passedTimeRatio - 経過した割合 (0~1)
  */
-function generateTweetText(passedTimeRatio) {
+exports.generateTweetText = (passedTimeRatio) => {
 
     const today = new Date();
     const month = today.getMonth() + 1;
 
-    return `${month}月\n${generateProgressBar(passedTimeRatio)} ${Math.round(passedTimeRatio * 100)}%`;
+    return `${month}月\n${this.generateProgressBar(passedTimeRatio)} ${Math.round(passedTimeRatio * 100)}%`;
 
 }
 
@@ -70,7 +70,7 @@ function generateTweetText(passedTimeRatio) {
  * ブロックを塗る数は四捨五入で決定する
  * @param passedTimeRatio - 何%時間が過ぎたか (0~1)
  */
-function generateProgressBar(passedTimeRatio) {
+exports.generateProgressBar = (passedTimeRatio) => {
 
     const blockWidth = 15;
 
@@ -84,7 +84,7 @@ function generateProgressBar(passedTimeRatio) {
  * 与えられた文字列をツイートする
  * @param String text - ツイートする文字列
  */
-function doTweet(text) {
+exports.doTweet = (text) => {
 
     const Twitter = require('twitter');
  
