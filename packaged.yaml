@@ -12,7 +12,7 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://lambda-test-retoruto-carry/9b2f647a08ef9ab160370af960c03380
+      CodeUri: s3://lambda-test-retoruto-carry/3f4896727d9cd6508aee58e275d75510
       Handler: app.lambdaHandler
       Runtime: nodejs8.10
       Events:
@@ -25,6 +25,13 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: rate(1 minute)
+      Environment:
+        Variables:
+          TWITTER_CONSUMER_KEY: twitterConsumerKey
+          TWITTER_CONSUMER_SECRET: twitterConsumerSecret
+          TWITTER_ACCESS_TOKEN_KEY: twitterAccessTokenKey
+          TWITTER_ACCESS_TOKEN_SECRET: twiiterAccessTokenSecret
+          TZ: Asia/Tokyo
 Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function

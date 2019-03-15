@@ -16,11 +16,13 @@ let response;
  */
 exports.lambdaHandler = (event, context) => {
 
-    this.doTweet(
-        this.generateTweetText(
-            this.calcPassedTimeRatio()
-        )
-    );
+    console.log(new Date());
+
+    // this.doTweet(
+    //     this.generateTweetText(
+    //         this.calcPassedTimeRatio()
+    //     )
+    // );
 
 };
 

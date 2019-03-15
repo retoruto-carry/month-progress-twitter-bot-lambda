@@ -31,9 +31,10 @@ Resources:
                         Schedule: rate(1 minute)
             Environment:
                 Variables:
-                    TWITTER_CONSUMER_KEY: twitterConsumerKey,
-                    TWITTER_CONSUMER_SECRET: twitterConsumerSecret,
-                    TWITTER_ACCESS_TOKEN_KEY: twitterAccessTokenKey,
+                    TZ: Asia/Tokyo
+                    TWITTER_CONSUMER_KEY: twitterConsumerKey
+                    TWITTER_CONSUMER_SECRET: twitterConsumerSecret
+                    TWITTER_ACCESS_TOKEN_KEY: twitterAccessTokenKey
                     TWITTER_ACCESS_TOKEN_SECRET: twiiterAccessTokenSecret
 
 Outputs:
