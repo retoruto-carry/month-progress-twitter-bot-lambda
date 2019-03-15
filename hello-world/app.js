@@ -16,13 +16,11 @@ let response;
  */
 exports.lambdaHandler = (event, context) => {
 
-    console.log(generateProgressBar(19))
-
-    // doTweet(
-    //     generateTweetText(
-    //         calcPassedTimeRatio()
-    //     )
-    // );
+    doTweet(
+        generateTweetText(
+            calcPassedTimeRatio()
+        )
+    );
 
 };
 
@@ -30,20 +28,22 @@ exports.lambdaHandler = (event, context) => {
  * 現在時刻、当月がどれだけの割合経過しているかを計算する
  * @return float - 経過した割合(0~100%)
  */
-// function calcPassedTimeRatio() {
+function calcPassedTimeRatio() {
 
-//     // 時刻取得
-//     currentTime = new Date.now.
-//     startMonthTime = 当月の1日0時
-//     endMonthTime = 月末の末日24時（もしくは翌月の1日0時）
-//     passedTime = currentTime - startMonthTime;
-//     monthTime = endMonthTime - startMonthTime;
+    // 時刻取得
+    const today = new Date();
+    const currentTime = today.getTime();
+    const startMonthTime = (new Date(today.getFullYear(), today.getMonth(), 1)).getTime();
+    const endMonthTime = (new Date(today.getFullYear(), today.getMonth() + 1, 1)).getTime(); // 翌月1日の00:00
+    const passedTime = currentTime - startMonthTime;
+    const monthTime = endMonthTime - startMonthTime;
 
-//     // 経過割合取得
-//     passedTimeRatio = passedTime / monthTime;
+    // 経過割合取得
+    const passedTimeRatio = passedTime / monthTime;
 
-//     return passedTimeRatio;
-// }
+    return passedTimeRatio;
+
+}
 
 /**
  * 実際にツイートするテキストを生成する
@@ -51,11 +51,14 @@ exports.lambdaHandler = (event, context) => {
  * 1月
  * ▓▓░░░░░░░░░░░░░ 13%
  * -------------------------
- * @param passedTimeRatio - 経過した割合(0~100％)
+ * @param float passedTimeRatio - 経過した割合 (0~1)
  */
 function generateTweetText(passedTimeRatio) {
 
-    return `${generateProgressBar(passedTimeRatio)} ${passedTimeRatio}%`;
+    const today = new Date();
+    const month = today.getMonth() + 1;
+
+    return `${month}月\n${generateProgressBar(passedTimeRatio)} ${Math.round(passedTimeRatio * 100)}%`;
 
 }
 
@@ -65,13 +68,13 @@ function generateTweetText(passedTimeRatio) {
  * ▓▓░░░░░░░░░░░░░
  * -------------------------
  * ブロックを塗る数は四捨五入で決定する
- * @param passedTimeRatio - 何%時間が過ぎたか 0~100(％)
+ * @param passedTimeRatio - 何%時間が過ぎたか (0~1)
  */
 function generateProgressBar(passedTimeRatio) {
 
     const blockWidth = 15;
 
-    filledBlockWidth = Math.round(passedTimeRatio / (100 / blockWidth));
+    const filledBlockWidth = Math.round(blockWidth * passedTimeRatio);
 
     return "▓".repeat(filledBlockWidth) + '░'.repeat(blockWidth - filledBlockWidth)
 
@@ -82,9 +85,10 @@ function generateProgressBar(passedTimeRatio) {
  * @param String text - ツイートする文字列
  */
 function doTweet(text) {
-    var Twitter = require('twitter');
+
+    const Twitter = require('twitter');
  
-    var client = new Twitter({
+    const client = new Twitter({
         consumer_key: process.env.TWITTER_CONSUMER_KEY,
         consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
         access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
@@ -102,4 +106,5 @@ function doTweet(text) {
         console.log(response);
 
     })
+
 }
