@@ -28,7 +28,7 @@ Resources:
                 ScheduledEvent:
                     Type: Schedule
                     Properties:
-                        Schedule: cron(1 0,8,20 * * ? *)
+                        Schedule: cron(1 1,11,15 * * ? *) #UTCなのでJSTに合わせるために-9時間している
             Environment:
                 Variables:
                     TZ: Asia/Tokyo
