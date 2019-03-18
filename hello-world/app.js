@@ -57,8 +57,10 @@ exports.calcPassedTimeRatio = () => {
 exports.generateTweetText = (passedTimeRatio) => {    
 
     const month = moment().format('M')
+    const progressBar = this.generateProgressBar(passedTimeRatio);
+    const passedTimeRatio_percent = Math.round(passedTimeRatio * 100);
 
-    return `${month}月\n${this.generateProgressBar(passedTimeRatio)} ${Math.round(passedTimeRatio * 100)}%`;
+    return `${month}月\n${progressBar} ${passedTimeRatio_percent}%`;
 
 }
 
