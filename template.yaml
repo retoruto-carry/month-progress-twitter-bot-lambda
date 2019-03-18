@@ -28,7 +28,7 @@ Resources:
                 ScheduledEvent:
                     Type: Schedule
                     Properties:
-                        Schedule: rate(1 minute)
+                        Schedule: cron(1 0,8,20 * * ? *)
             Environment:
                 Variables:
                     TZ: Asia/Tokyo

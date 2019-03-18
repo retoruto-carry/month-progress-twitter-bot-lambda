@@ -12,7 +12,7 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://lambda-test-retoruto-carry/3f4896727d9cd6508aee58e275d75510
+      CodeUri: s3://lambda-test-retoruto-carry/d7f957041beb5e42fbfc94dff59c9e36
       Handler: app.lambdaHandler
       Runtime: nodejs8.10
       Events:
@@ -24,7 +24,7 @@ Resources:
         ScheduledEvent:
           Type: Schedule
           Properties:
-            Schedule: rate(1 minute)
+            Schedule: cron(1 0,8,20 * * ? *)
       Environment:
         Variables:
           TZ: Asia/Tokyo
