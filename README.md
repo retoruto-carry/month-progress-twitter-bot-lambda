@@ -6,7 +6,7 @@ This is a sample template for sam-app - Below is a brief explanation of what we 
 .
 ├── README.MD                   <-- This instructions file
 ├── event.json                  <-- API Gateway Proxy Integration event payload
-├── hello_world                 <-- Source code for a lambda function
+├── src                 <-- Source code for a lambda function
 │   └── app.js                  <-- Lambda function code
 │   └── package.json            <-- NodeJS dependencies and scripts
 │   └── tests                   <-- Unit tests
@@ -29,27 +29,7 @@ This is a sample template for sam-app - Below is a brief explanation of what we 
 
 ```bash
 # sam local invoke HelloWorldFunction --event event.json
-sam local invoke HelloWorldFunction --event event.json  --env-vars env.json #環境変数を追加
-```
- 
-**Invoking function locally through local API Gateway**
-
-```bash
-sam local start-api
-```
-
-If the previous command ran successfully you should now be able to hit the following local endpoint to invoke your function `http://localhost:3000/hello`
-
-**SAM CLI** is used to emulate both Lambda and API Gateway locally and uses our `template.yaml` to understand how to bootstrap this environment (runtime, where the source code is, etc.) - The following excerpt is what the CLI will read in order to initialize an API and its routes:
-
-```yaml
-...
-Events:
-    HelloWorld:
-        Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-        Properties:
-            Path: /hello
-            Method: get
+sam local invoke HelloWorldFunction --event event.json --env-vars env.json
 ```
 
 ## Packaging and deployment
@@ -58,10 +38,10 @@ AWS Lambda NodeJS runtime requires a flat folder with all dependencies including
 
 ```yaml
 ...
-    HelloWorldFunction:
+    MonthProgressTwitterBotFunction:
         Type: AWS::Serverless::Function
         Properties:
-            CodeUri: hello-world/
+            CodeUri: src/
             ...
 ```
 
@@ -89,15 +69,6 @@ sam deploy \
 ```
 
 > **See [Serverless Application Model (SAM) HOWTO Guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-quick-start.html) for more details in how to get started.**
-
-After deployment is complete you can run the following command to retrieve the API Gateway Endpoint URL:
-
-```bash
-aws cloudformation describe-stacks \
-    --stack-name sam-app \
-    --query 'Stacks[].Outputs[?OutputKey==`HelloWorldApi`]' \
-    --output table
-``` 
 
 ## Fetch, tail, and filter Lambda function logs
 
@@ -137,12 +108,7 @@ Here are a few things you can try to get more acquainted with building serverles
 
 * Uncomment lines on `app.js`
 * Build the project with ``sam build --use-container``
-* Invoke with ``sam local invoke HelloWorldFunction --event event.json``
-* Update tests
-
-### Create an additional API resource
-
-* Create a catch all resource (e.g. /hello/{proxy+}) and return the name requested through this new path
+* Invoke with ``sam local invoke MonthProgressTwitterBotFunction --event event.json --env-vars env.json``
 * Update tests
 
 ### Step-through debugging
@@ -171,15 +137,12 @@ By default, this command writes built artifacts to `.aws-sam/build` folder.
 
 ## SAM and AWS CLI commands
 
-All commands used throughout this document
+All commands used throughout this document (this is custimized for me)
 
 ```bash
 # Invoke function locally with event.json as an input
 # sam local invoke HelloWorldFunction --event event.json
-sam local invoke HelloWorldFunction --event event.json  --env-vars env.json #環境変数を追加
-
-# Run API Gateway locally
-sam local start-api
+sam local invoke MonthProgressTwitterBotFunction --event event.json --env-vars env.json
 
 # Create S3 bucket
 aws s3 mb s3://lambda-test-retoruto-carry
@@ -195,14 +158,8 @@ sam deploy \
     --stack-name sam-app \
     --capabilities CAPABILITY_IAM
 
-# Describe Output section of CloudFormation stack previously created
-aws cloudformation describe-stacks \
-    --stack-name sam-app \
-    --query 'Stacks[].Outputs[?OutputKey==`HelloWorldApi`]' \
-    --output table
-
 # Tail Lambda function Logs using Logical name defined in SAM Template
-sam logs -n HelloWorldFunction --stack-name sam-app --tail
+sam logs -n MonthProgressTwitterBotFunction --stack-name sam-app --tail
 ```
 
 **NOTE**: Alternatively this could be part of package.json scripts section.
