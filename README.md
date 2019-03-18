@@ -104,13 +104,6 @@ aws cloudformation delete-stack --stack-name sam-app
 
 Here are a few things you can try to get more acquainted with building serverless applications using SAM:
 
-### Learn how SAM Build can help you with dependencies
-
-* Uncomment lines on `app.js`
-* Build the project with ``sam build --use-container``
-* Invoke with ``sam local invoke MonthProgressTwitterBotFunction --event event.json --env-vars env.json``
-* Update tests
-
 ### Step-through debugging
 
 * **[Enable step-through debugging docs for supported runtimes]((https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-debugging.html))**

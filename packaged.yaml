@@ -1,15 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: 'sam-app
-
-  Sample SAM Template for sam-app
-
-  '
+Description: "\u6708\u306E\u4F55\u5272\u304C\u7D4C\u904E\u3057\u3066\u3044\u308B\u304B\
+  \u3092\u3064\u3076\u3084\u304FtwitterBot"
 Globals:
   Function:
     Timeout: 10
 Resources:
-  HelloWorldFunction:
+  MonthProgressTwitterBotFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: s3://lambda-test-retoruto-carry/ec4258a1ec10aabfe8d9d872b5105ade
