@@ -7,12 +7,12 @@ Description: 'sam-app
   '
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 10
 Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://lambda-test-retoruto-carry/d7f957041beb5e42fbfc94dff59c9e36
+      CodeUri: s3://lambda-test-retoruto-carry/ec4258a1ec10aabfe8d9d872b5105ade
       Handler: app.lambdaHandler
       Runtime: nodejs8.10
       Events:
@@ -24,7 +24,7 @@ Resources:
         ScheduledEvent:
           Type: Schedule
           Properties:
-            Schedule: cron(1 0,8,20 * * ? *)
+            Schedule: cron(1 1,11,15 * * ? *)
       Environment:
         Variables:
           TZ: Asia/Tokyo

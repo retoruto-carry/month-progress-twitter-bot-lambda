@@ -8,7 +8,7 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
     Function:
-        Timeout: 3
+        Timeout: 10
 
 
 Resources:
@@ -16,7 +16,7 @@ Resources:
     HelloWorldFunction:
         Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
         Properties:
-            CodeUri: hello-world/
+            CodeUri: src/
             Handler: app.lambdaHandler
             Runtime: nodejs8.10
             Events:
@@ -28,7 +28,7 @@ Resources:
                 ScheduledEvent:
                     Type: Schedule
                     Properties:
-                        Schedule: cron(1 1,11,15 * * ? *) #UTCなのでJSTに合わせるために-9時間している
+                        Schedule: cron(1 1,11,15 * * ? *) #UTCなのでJSTに合わせるために-9時間
             Environment:
                 Variables:
                     TZ: Asia/Tokyo
