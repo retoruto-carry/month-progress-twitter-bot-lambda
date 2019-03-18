@@ -28,7 +28,6 @@ This is a sample template for sam-app - Below is a brief explanation of what we 
 **Invoking function locally using a local sample payload**
 
 ```bash
-# sam local invoke HelloWorldFunction --event event.json
 sam local invoke HelloWorldFunction --event event.json --env-vars env.json
 ```
 
@@ -77,7 +76,7 @@ To simplify troubleshooting, SAM CLI has a command called sam logs. sam logs let
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-sam logs -n HelloWorldFunction --stack-name sam-app --tail
+sam logs -n MonthProgressTwitterBotFunction --stack-name sam-app --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
@@ -134,7 +133,6 @@ All commands used throughout this document (this is custimized for me)
 
 ```bash
 # Invoke function locally with event.json as an input
-# sam local invoke HelloWorldFunction --event event.json
 sam local invoke MonthProgressTwitterBotFunction --event event.json --env-vars env.json
 
 # Create S3 bucket
