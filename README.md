@@ -6,7 +6,7 @@ This is a sample template for month-progress-twitter-bot - Below is a brief expl
 .
 ├── README.MD                   <-- This instructions file
 ├── event.json                  <-- API Gateway Proxy Integration event payload
-├── src                 <-- Source code for a lambda function
+├── src                         <-- Source code for a lambda function
 │   └── app.js                  <-- Lambda function code
 │   └── package.json            <-- NodeJS dependencies and scripts
 │   └── tests                   <-- Unit tests
@@ -37,11 +37,11 @@ AWS Lambda NodeJS runtime requires a flat folder with all dependencies including
 
 ```yaml
 ...
-    MonthProgressTwitterBotFunction:
-        Type: AWS::Serverless::Function
-        Properties:
-            CodeUri: src/
-            ...
+MonthProgressTwitterBotFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+        CodeUri: src/
+...
 ```
 
 Firstly, we need a `S3 bucket` where we can upload our Lambda functions packaged as ZIP before we deploy anything - If you don't have a S3 bucket to store code artifacts then this is a good time to create one:
