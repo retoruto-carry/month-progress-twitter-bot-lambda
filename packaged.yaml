@@ -27,11 +27,11 @@ Resources:
             Schedule: rate(1 minute)
       Environment:
         Variables:
+          TZ: Asia/Tokyo
           TWITTER_CONSUMER_KEY: twitterConsumerKey
           TWITTER_CONSUMER_SECRET: twitterConsumerSecret
           TWITTER_ACCESS_TOKEN_KEY: twitterAccessTokenKey
           TWITTER_ACCESS_TOKEN_SECRET: twiiterAccessTokenSecret
-          TZ: Asia/Tokyo
 Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function

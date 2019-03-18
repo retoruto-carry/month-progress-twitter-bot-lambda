@@ -1,6 +1,7 @@
-// const axios = require('axios')
-// const url = 'http://checkip.amazonaws.com/';
-let response;
+const moment = require('moment');
+require('moment-timezone')
+
+moment.tz.setDefault('Asia/Tokyo')
 
 /**
  *
@@ -16,13 +17,11 @@ let response;
  */
 exports.lambdaHandler = (event, context) => {
 
-    console.log(new Date());
-
-    // this.doTweet(
-    //     this.generateTweetText(
-    //         this.calcPassedTimeRatio()
-    //     )
-    // );
+    this.doTweet(
+        this.generateTweetText(
+            this.calcPassedTimeRatio()
+        )
+    );
 
 };
 
@@ -33,14 +32,14 @@ exports.lambdaHandler = (event, context) => {
 exports.calcPassedTimeRatio = () => {
 
     // 時刻取得
-    const today = new Date();
-    const currentTime = today.getTime();
-    const startMonthTime = (new Date(today.getFullYear(), today.getMonth(), 1)).getTime();
-    const endMonthTime = (new Date(today.getFullYear(), today.getMonth() + 1, 1)).getTime(); // 翌月1日の00:00
-    const passedTime = currentTime - startMonthTime;
-    const monthTime = endMonthTime - startMonthTime;
+    const currentTime = moment();
+    const startMonthTime = moment(currentTime).startOf('months');
+    const endMonthTime = moment(currentTime).endOf('months');
 
-    // 経過割合取得
+    // 経過割合計算
+    const passedTime = currentTime.diff(startMonthTime);
+    const monthTime = endMonthTime.diff(startMonthTime);
+
     const passedTimeRatio = passedTime / monthTime;
 
     return passedTimeRatio;
@@ -55,10 +54,9 @@ exports.calcPassedTimeRatio = () => {
  * -------------------------
  * @param float passedTimeRatio - 経過した割合 (0~1)
  */
-exports.generateTweetText = (passedTimeRatio) => {
+exports.generateTweetText = (passedTimeRatio) => {    
 
-    const today = new Date();
-    const month = today.getMonth() + 1;
+    const month = moment().format('M')
 
     return `${month}月\n${this.generateProgressBar(passedTimeRatio)} ${Math.round(passedTimeRatio * 100)}%`;
 
