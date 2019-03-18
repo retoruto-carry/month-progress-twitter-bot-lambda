@@ -9,7 +9,7 @@ Resources:
   MonthProgressTwitterBotFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://lambda-test-retoruto-carry/ec4258a1ec10aabfe8d9d872b5105ade
+      CodeUri: s3://month-progress-twitter-bot/ec4258a1ec10aabfe8d9d872b5105ade
       Handler: app.lambdaHandler
       Runtime: nodejs8.10
       Events:

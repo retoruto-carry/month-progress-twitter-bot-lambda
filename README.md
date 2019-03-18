@@ -1,6 +1,6 @@
-# sam-app
+# month-progress-twitter-bot
 
-This is a sample template for sam-app - Below is a brief explanation of what we have generated for you:
+This is a sample template for month-progress-twitter-bot - Below is a brief explanation of what we have generated for you:
 
 ```bash
 .
@@ -63,7 +63,7 @@ Next, the following command will create a Cloudformation Stack and deploy your S
 ```bash
 sam deploy \
     --template-file packaged.yaml \
-    --stack-name sam-app \
+    --stack-name month-progress-twitter-bot \
     --capabilities CAPABILITY_IAM
 ```
 
@@ -76,7 +76,7 @@ To simplify troubleshooting, SAM CLI has a command called sam logs. sam logs let
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-sam logs -n MonthProgressTwitterBotFunction --stack-name sam-app --tail
+sam logs -n MonthProgressTwitterBotFunction --stack-name month-progress-twitter-bot --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
@@ -96,7 +96,7 @@ npm run test
 In order to delete our Serverless Application recently deployed you can use the following AWS CLI Command:
 
 ```bash
-aws cloudformation delete-stack --stack-name sam-app
+aws cloudformation delete-stack --stack-name month-progress-twitter-bot
 ```
 
 ## Bringing to the next level
@@ -129,28 +129,28 @@ By default, this command writes built artifacts to `.aws-sam/build` folder.
 
 ## SAM and AWS CLI commands
 
-All commands used throughout this document (this is custimized for me)
+All commands used throughout this document
 
 ```bash
 # Invoke function locally with event.json as an input
 sam local invoke MonthProgressTwitterBotFunction --event event.json --env-vars env.json
 
 # Create S3 bucket
-aws s3 mb s3://lambda-test-retoruto-carry
+aws s3 mb s3://month-progress-twitter-bot
 
 # Package Lambda function defined locally and upload to S3 as an artifact
 sam package \
     --output-template-file packaged.yaml \
-    --s3-bucket lambda-test-retoruto-carry
+    --s3-bucket month-progress-twitter-bot
 
 # Deploy SAM template as a CloudFormation stack
 sam deploy \
     --template-file packaged.yaml \
-    --stack-name sam-app \
+    --stack-name month-progress-twitter-bot \
     --capabilities CAPABILITY_IAM
 
 # Tail Lambda function Logs using Logical name defined in SAM Template
-sam logs -n MonthProgressTwitterBotFunction --stack-name sam-app --tail
+sam logs -n MonthProgressTwitterBotFunction --stack-name month-progress-twitter-bot --tail
 ```
 
 **NOTE**: Alternatively this could be part of package.json scripts section.
