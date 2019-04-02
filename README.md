@@ -86,7 +86,7 @@ You can find more information and examples about filtering Lambda function logs 
 We use `mocha` for testing our code and it is already added in `package.json` under `scripts`, so that we can simply run the following command to run our tests:
 
 ```bash
-cd hello-world
+cd src
 npm install
 npm run test
 ```
