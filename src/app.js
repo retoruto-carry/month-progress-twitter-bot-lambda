@@ -69,13 +69,13 @@ exports.generateTweetText = (passedTimeRatio) => {
  * -------------------------
  * ブロックを塗る数は四捨五入で決定する
  * @param {Number} passedTimeRatio ブロックを塗る割合(0~1)
- * @retun {String}
+ * @return {String}
  */
-exports.generateProgressBar = (passedTimeRatio) => {
+exports.generateProgressBar = (ratio) => {
 
     const blockWidth = 15;
 
-    const filledBlockWidth = Math.round(blockWidth * passedTimeRatio);
+    const filledBlockWidth = Math.round(blockWidth * ratio);
 
     return "▓".repeat(filledBlockWidth) + '░'.repeat(blockWidth - filledBlockWidth)
 
